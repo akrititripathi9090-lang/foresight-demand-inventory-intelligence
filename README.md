@@ -1,0 +1,1 @@
+# foresight-demand-inventory-intelligence
