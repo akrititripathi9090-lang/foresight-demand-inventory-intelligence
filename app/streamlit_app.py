@@ -2,7 +2,6 @@ from pathlib import Path
 
 
 import pandas as pd
-import numpy as np
 import plotly.express as px
 import streamlit as st
 
@@ -25,7 +24,7 @@ PROCESSED_DIR = BASE_DIR / "processed"
 
 def find_csv(filename: str) -> Path:
     """Find a project CSV in the app or processed folder."""
-    for folder in (APP_DIR, PROCESSED_DIR):
+    for folder in (PROCESSED_DIR, APP_DIR):
         path = folder / filename
         if path.exists():
             return path
@@ -43,9 +42,9 @@ ANALYSIS_PATH = find_csv("analysis_ready.csv")
 @st.cache_data
 
 def load_data():
-    decision = pd.read_csv("decision_path")
-    forecast = pd.read_csv("forecast_path")
-    analysis = pd.read_csv("analysis_path")
+    decision = pd.read_csv(DECISION_PATH)
+    forecast = pd.read_csv(FORECAST_PATH)
+    analysis = pd.read_csv(ANALYSIS_PATH)
 
     # Standardize SKU values.
     for frame in (decision, forecast, analysis):
@@ -279,7 +278,7 @@ else:
     )
     fig_risk.update_traces(textinfo="percent+label", hovertemplate="%{label}: %{value} SKUs<extra></extra>")
     fig_risk.update_layout(height=430, margin=dict(l=20, r=20, t=60, b=20))
-    st.plotly_chart(fig_risk, use_container_width=True, key="risk_distribution_chart")
+    st.plotly_chart(fig_risk, width="stretch", key="risk_distribution_chart")
 
 # FORECAST VS ACTUAL
 st.subheader("📈 Forecast vs Actual")
@@ -327,7 +326,7 @@ if "Week" in forecast_data.columns and "Actual" in forecast_data.columns and "Fo
             color_discrete_map={"Actual": "#457B9D", "Forecast": "#E45756"},
         )
         fig_forecast.update_layout(height=450, hovermode="x unified")
-        st.plotly_chart(fig_forecast, use_container_width=True, key="forecast_actual_chart")
+        st.plotly_chart(fig_forecast, width="stretch", key="forecast_actual_chart")
     else:
         st.info("No forecast/actual data matches the selected filters.")
 else:
@@ -361,7 +360,7 @@ if len(stock_columns) == 3:
             color_discrete_map={"Current_Stock": "#2A9D8F", "Forecast": "#E45756"},
         )
         fig_stock.update_layout(height=450, hovermode="x unified")
-        st.plotly_chart(fig_stock, use_container_width=True, key="stock_forecast_chart")
+        st.plotly_chart(fig_stock, width="stretch", key="stock_forecast_chart")
     else:
         st.info("No stock/forecast data matches the selected filters.")
 else:
@@ -406,7 +405,7 @@ else:
         )
         fig_priority.update_traces(texttemplate="%{text:.1f}", textposition="outside")
         fig_priority.update_layout(height=450)
-        st.plotly_chart(fig_priority, use_container_width=True, key="reorder_priority_chart")
+        st.plotly_chart(fig_priority, width="stretch", key="reorder_priority_chart")
     else:
         st.info("No reorder products with forecast values are available.")
 
@@ -437,7 +436,7 @@ for column in ["Forecast", "Current_Stock", "On_Order", "Lead_Time_Days"]:
 
 st.dataframe(
     display_table,
-    use_container_width=True,
+    width="stretch",
     hide_index=True,
 )
 
