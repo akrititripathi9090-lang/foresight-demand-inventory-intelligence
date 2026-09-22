@@ -34,18 +34,18 @@ def find_csv(filename: str) -> Path:
     )
 
 
-DECISION_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/decision_table.csv")
-FORECAST_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/model_forecast_results.csv")
-ANALYSIS_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/analysis_ready.csv")
+DECISION_PATH = find_csv("decision_table.csv")
+FORECAST_PATH = find_csv("model_forecast_results.csv")
+ANALYSIS_PATH = find_csv("analysis_ready.csv")
 
 # LOAD + PREPARE DATA
 
 @st.cache_data
 
 def load_data():
-    decision = pd.read_csv("D:/foresight-demand-inventory-intelligence/app/decision_table.csv")
-    forecast = pd.read_csv("D:/foresight-demand-inventory-intelligence/app/model_forecast_results.csv")
-    analysis = pd.read_csv("D:/foresight-demand-inventory-intelligence/app/analysis_ready.csv")
+    decision = pd.read_csv("decision_path")
+    forecast = pd.read_csv("forecast_path")
+    analysis = pd.read_csv("analysis_path")
 
     # Standardize SKU values.
     for frame in (decision, forecast, analysis):
