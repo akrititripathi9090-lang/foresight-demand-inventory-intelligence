@@ -460,5 +460,3 @@ st.caption(
 
 # Command for local run
 # python -m streamlit run app/streamlit_app.py
-
-df find_csv("D:/foresight-demand-inventory-intelligence/app/decision_table.csv")
