@@ -34,9 +34,9 @@ def find_csv(filename: str) -> Path:
     )
 
 
-DECISION_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/decision_table.csv")
-FORECAST_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/model_forecast_results.csv")
-ANALYSIS_PATH = find_csv("D:/foresight-demand-inventory-intelligence/app/analysis_ready.csv")
+DECISION_PATH = find_csv("decision_table.csv")
+FORECAST_PATH = find_csv("model_forecast_results.csv")
+ANALYSIS_PATH = find_csv("analysis_ready.csv")
 
 # LOAD + PREPARE DATA
 
@@ -460,3 +460,5 @@ st.caption(
 
 # Command for local run
 # python -m streamlit run app/streamlit_app.py
+
+df find_csv("D:/foresight-demand-inventory-intelligence/app/decision_table.csv")
