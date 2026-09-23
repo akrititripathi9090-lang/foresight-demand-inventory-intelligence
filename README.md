@@ -657,7 +657,7 @@ Potential next steps include:
 
 # 👤 Author
 
-**Umair Akbar Mohammed**
+**Akriti Tripathi**
 
 Data Science & Analytics Project
 
@@ -665,11 +665,6 @@ Project: **FORESIGHT — Demand & Inventory Intelligence**
 
 ---
 
-## Repository
-
-Project repository:
-
-https://github.com/umairr-95/foresight-demand-inventory-intelligence.git
 
 ## Live Dashboard
 
