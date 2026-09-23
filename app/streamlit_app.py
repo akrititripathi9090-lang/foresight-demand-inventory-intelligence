@@ -22,18 +22,19 @@ APP_DIR = BASE_DIR / "app"
 PROCESSED_DIR = BASE_DIR / "processed"
 
 
-def find_csv(filename: str) -> Path:
-    """Find a project CSV in the app or processed folder."""
+def find_csv(*filenames: str) -> Path:
+    """Find the first matching project CSV, preferring processed outputs."""
     for folder in (PROCESSED_DIR, APP_DIR):
-        path = folder / filename
-        if path.exists():
-            return path
+        for filename in filenames:
+            path = folder / filename
+            if path.exists():
+                return path
     raise FileNotFoundError(
-        f"Could not find {filename}. Expected it in {APP_DIR} or {PROCESSED_DIR}."
+        f"Could not find any of {filenames}. Expected them in {APP_DIR} or {PROCESSED_DIR}."
     )
 
 
-DECISION_PATH = find_csv("decision_table.csv")
+DECISION_PATH = find_csv("decision_table.csv", "decision_table copy.csv")
 FORECAST_PATH = find_csv("model_forecast_results.csv")
 ANALYSIS_PATH = find_csv("analysis_ready.csv")
 
